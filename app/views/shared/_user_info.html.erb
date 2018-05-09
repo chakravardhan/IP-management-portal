@@ -1,0 +1,19 @@
+<% if current_user.user_type == 1%>
+   Student Dashboard
+<% elsif current_user.user_type == 1 %>
+   Faculty Dashboard
+<% elsif current_user.user_type == 1 %>
+   Collaborator Dashboard
+<% else %>
+   Dashboard
+<% end %>
+
+
+<h1><%= current_user.user_type %></h1>
+<h1><%= current_user.email %></h1><br>
+<%= current_user.id %><br>
+<span><%= link_to "Pending IP's", pending_path %></span><br>
+<a href="/review">Reviewing IP's</a><br>
+<a href="/accept">Accepted IP's</a><br>
+Total Number of IP's created :
+<span><%= pluralize(current_user.ip_assets.count, "IPs") %></span>

@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Go to dashboard for viewing ip assets</h1>
+<div id="tag_cloud">
+  <% tag_cloud IpAsset.tag_counts, %w[s m l] do |tag, css_class| %>
+    <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+  <% end %>
+</div>
+
+<h1>Ip Assets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Filename</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ip_assets.each do |ip_asset| %>
+    <% @ownerships.each do |ownership| %>
+
+    <% if ip_asset.id == ownership.ip_asset.id %>
+      <tr>
+        <td><%= ip_asset.title %></td>
+        <td><%= ip_asset.description %></td>
+        <td><%= ip_asset.filename %></td>
+        <td><%= link_to 'Show', ip_asset %></td>
+        
+         <td><%= link_to "Download File", ip_asset.attachment_url %></td>
+      </tr>
+    <% end %>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+<br>
+
+<%= link_to 'dashboard', dashboard_index_path %>

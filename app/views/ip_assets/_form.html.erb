@@ -1,0 +1,48 @@
+<%= form_for(ip_asset) do |f| %>
+  <% if ip_asset.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ip_asset.errors.count, "error") %> prohibited this ip_asset from being saved:</h2>
+
+      <ul>
+      <% ip_asset.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= f.label :filename %>
+    <%= f.text_field :filename %>
+  </div>
+  <div class="field">
+    <%= f.label :uploadfile %>
+    <%= f.file_field :attachment %>
+  </div>
+  <div class="field">
+  <%= f.label :tag_list, "Tags (separated by commas)" %><br />
+  <%= f.text_field :tag_list %>
+</div>
+<div class="field">
+
+     <ol>
+      <%= f.fields_for :ownerships do |ownership| %>
+        <%= render 'ownership_fields', f: ownership %>
+      <% end %>
+    </ol>
+    <%= link_to_add_association 'add ownership', f, :ownerships  %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

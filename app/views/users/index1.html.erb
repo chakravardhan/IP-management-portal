@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-md-8">
+  <h3>Accepted IP's</h3>
+  <%= @user.email %> <br>
+  <%= @user.id %> <br>
+  <head>
+<style>
+table, th, td {
+    border: 1px solid black;
+}
+</style>
+</head>
+  <ol class="ip_assets">
+  <% @ownership.each do |ownership| %>
+  <% if ownership.ip_asset.status == 1 %>
+      <table style="width:100%">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Filename</th>
+      <th>Download</th>
+      <th>percentage</th>
+      <th>approved by</th>
+
+<colgroup span="2" align="left"></colgroup>
+  <colgroup align="right"></colgroup>
+      <th colspan="6"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td><%= ownership.ip_asset.title %></td>
+        <td><%= ownership.ip_asset.description %></td>
+        <td><%= ownership.ip_asset.filename %></td>
+        <td><%= link_to "Download File", ownership.ip_asset.attachment_url %></td>
+        <td><%= ownership.percentage %></td>
+        <td><%= ownership.ip_asset.approved_by %></td>
+
+
+
+
+      </tr>
+  </tbody>
+</table>
+     
+  <% end %>
+  <% end %>
+  </ol>
+  </div>
+</div>

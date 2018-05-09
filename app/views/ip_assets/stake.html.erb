@@ -1,0 +1,24 @@
+<h1> STAKE HOLDING PATTERN </h1>
+ <% @ownerships.each do |ownership| %>
+		<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Percentage</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td><%= User.find(ownership.user_id).email %></td>
+
+        <td><%= ownership.percentage %></td>
+
+
+      </tr>
+  </tbody>
+</table>
+
+  <% end %>
+  <%= link_to 'Back', approve_path %>

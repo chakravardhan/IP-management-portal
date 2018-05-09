@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+<p>Tags: <%= raw @ip_asset.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+ </p>
+<p>
+  <strong>Title:</strong>
+  <%= @ip_asset.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @ip_asset.description %>
+</p>
+
+<p>
+  <strong>Filename:</strong>
+  <%= @ip_asset.filename %>
+</p>
+
+<%= link_to 'Edit', edit_ip_asset_path(@ip_asset) %> |
+<%= link_to 'Back', new_ip_asset_path %>

@@ -1,0 +1,13 @@
+<div class='nested-fields'>
+    <div class="field">
+      <%= f.label :Email %>
+      <%= f.select :user_id, User.all.map{ |c| [c.email, c.id]}%>
+    </div>
+    <div class="field">
+      <%= f.label :percentage %>
+      <%= f.text_field :percentage %>
+    
+    </div>
+    
+    <%= link_to_remove_association "remove ownership", f %>
+  </div>

@@ -1,0 +1,110 @@
+<h1>Waiting for approve </h1>
+ <% @ip.each do |ip| %>
+     <% if @ip_comm.where(ip_asset_id: ip.id).where(user_id: @user.id).first.present? %>
+
+          <% if @ip_comm.where(ip_asset_id: ip.id).where(user_id: @user.id).first.vote == 0 %>
+            <% if ip.status != 2 %>
+
+		<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Filename</th>
+      <th>Download File</th>
+      <th colspan="6"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td><%= ip.title %></td>
+        <td><%= ip.description %></td>
+        <td><%= ip.filename %></td>
+        <td><%= link_to "Click here", ip.attachment_url %></td>
+      
+        <td><%= link_to "Approve", {:controller => "ip_assets", :action => "approve1", :my_ip => ip }%></td>
+        
+
+         <td><%= link_to "Resend", {:controller => "ip_assets", :action => "approve2", :my_ip => ip }%></td>
+          <td><%= link_to "Stakes", {:controller => "ip_assets", :action => "stake", :my_ip => ip }%></td>
+          <td><%= link_to "Reject", {:controller => "ip_assets", :action => "approve3", :my_ip => ip }%></td>
+
+
+      </tr>
+  </tbody>
+</table>
+
+	<% end %>
+  <% end %>          
+  <% end %>
+  <% end %>
+  <h1>approved by you</h1>
+ <% @ip.each do |ip| %>
+	<% if @ip_comm.where(ip_asset_id: ip.id).where(user_id: @user.id).first.present? %>
+
+          <% if @ip_comm.where(ip_asset_id: ip.id).where(user_id: @user.id).first.vote == 1 %>
+		<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Filename</th>
+      <th>Download File</th>
+
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td><%= ip.title %></td>
+        <td><%= ip.description %></td>
+        <td><%= ip.filename %></td>
+        <td><%= link_to "ClickHere", ip.attachment_url %></td>
+          <td><%= link_to "Stakes", {:controller => "ip_assets", :action => "stake", :my_ip => ip }%></td>
+        
+
+
+      </tr>
+  </tbody>
+</table>
+
+	<% end %>
+  <% end %>
+  <% end %>
+
+   <h1>Reviewing</h1>
+ <% @ip.each do |ip| %>
+	<% if ip.status == 2 %>
+		<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Filename</th>
+      <th>Download File</th>
+
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td><%= ip.title %></td>
+        <td><%= ip.description %></td>
+        <td><%= ip.filename %></td>
+        <td><%= link_to "ClickHere", ip.attachment_url %></td>
+        <td><%= link_to "Reject", {:controller => "ip_assets", :action => "approve3", :my_ip => ip }%></td>
+          <td><%= link_to "Stakes", {:controller => "ip_assets", :action => "stake", :my_ip => ip }%></td>
+
+
+      </tr>
+  </tbody>
+</table>
+
+	<% end %>
+  <% end %>
+  <%= link_to 'Back', root_path %>
+
+  
